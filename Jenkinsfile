@@ -7,7 +7,7 @@ node {
         }
 
         stage('Extract Data') {
-            bat "\"${PYTHON}" extract_data.py extract.py"
+            bat "\"${PYTHON}\" extract_data.py extract.py"
         }
 
     } catch (err) {

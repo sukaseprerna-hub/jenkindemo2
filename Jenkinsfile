@@ -1,5 +1,5 @@
 node {
-    def PYTHON = 'C:\\Program Files\\Python314\\python.exe extract_data.py extract.py'
+    def PYTHON = 'C:\\Program Files\\Python314\\python.exe'
 
     try {
         stage('Checkout') {
@@ -7,7 +7,7 @@ node {
         }
 
         stage('Extract Data') {
-            bat "${PYTHON} extract.py"
+            bat "\"${PYTHON}" extract_data.py extract.py"
         }
 
     } catch (err) {

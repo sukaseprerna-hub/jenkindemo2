@@ -1,5 +1,5 @@
 node {
-    def PYTHON = 'C:\\Program Files\\Python314\\python.exe'
+    def PYTHON = 'C:\\Program Files\\Python314\\python.exe extract_data.py'
 
     try {
         stage('Checkout') {

@@ -1,20 +1,43 @@
-node {
-    def PYTHON = 'C:\\Program Files\\Python314\\python.exe'
+pipeline {
+    agent any
 
-    try {
+   triggers {
+        cron('*/2 * * * *') 
+    }
+    environment {
+        PYTHON = 'C:\Program Files\Python314\python.exe'
+    }
+
+    stages {
         stage('Checkout') {
-            checkout scm
+            steps {
+                checkout scm
+            }
         }
 
-        stage('Extract Data') {
-            bat "\"${PYTHON}\" extract_data.py extract.py"
+        stage('Setup Python') {
+            steps {
+                bat "${env.PYTHON} --version"
+            }
         }
 
-    } catch (err) {
-        echo "Pipeline failed: ${err}"
-        currentBuild.result = 'FAILURE'
-    } finally {
-        echo 'Pipeline completed.'
+        stage('Extract') {
+            steps {
+                bat "${env.PYTHON} extract.py"
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline completed.'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
     }
 }
+
+
+
 

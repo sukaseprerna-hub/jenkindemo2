@@ -5,7 +5,7 @@ pipeline {
         cron('*/2 * * * *') 
     }
     environment {
-        PYTHON = 'C:\Program Files\Python314\python.exe'
+        PYTHON = 'C:\\Program Files\\Python314\\python.exe'
     }
 
     stages {

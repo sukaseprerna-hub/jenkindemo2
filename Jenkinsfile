@@ -17,7 +17,7 @@ pipeline {
 
         stage('Setup Python') {
             steps {
-                bat "${env.PYTHON} --version"
+                bat "\"${env.PYTHON}\" --version"
             }
         }
 
